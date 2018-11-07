@@ -1,2 +1,36 @@
 #In this project i am going to mine twitter data by using python.
 #Twitter is a popular social media website where a user can write short sms like messages called tweets. 
+
+Here is the code i have written to search about positive/negative sentiment about any public figure 
+
+import  tweepy
+from textblob import TextBlob
+consumer_key=" "     #Copy the access token consumer_key from twitter developer profile..
+consumer_secret=" "    #Copy the access token consumer_secret from twitter developer profile..
+access_token=" "      #Copy the access token code from twitter developer profile..
+access_token_secret="... "   #Copy the access token secret code from twitter developer profile..
+
+auth=tweepy.OAuthHandler(consumer_key,consumer_secret)  #Authorization phase
+auth.set_access_token(access_token, access_token_secret)
+
+api=tweepy.API(auth)
+
+public_tweets = api.search('....') #Name of the famous personality you want to search.
+for tweet in public_tweets:
+    print(tweet.text)
+    analysis = TextBlob(tweet.text)
+    if analysis.sentiment.polarity>0:
+        print("1")
+    elif analysis.sentiment.polarity==0:
+        print("0")
+    else:
+        print("-1")
+
+
+
+# Things i have learnt from this project:
+
+    1.Sentiment analysis-Understanding and extracting feelings from data.
+    2.How an API works.
+    3.How to use TextBlob for Natural language processing task.
+    
